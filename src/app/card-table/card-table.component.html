@@ -1,0 +1,30 @@
+<!-- <p>card-table works!</p> -->
+
+<div class="container">
+
+    <h1 class="text-center mt-5">Cards Table</h1>
+
+    <a [routerLink]="'/addCard'"><button class="mb-5 btn btn-md btn-primary">Add Staff</button></a>
+
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Card Owner</th>
+                <th>Card Number</th>
+                <th>Exp Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let data of cards let i = index">
+                <th>{{i + 1}}</th>
+                <th>{{data.cardOwnerName}}</th>
+                <th>{{data.cardNumber}}</th>
+                <th>{{data.expirationDate}}</th>
+                <th><a [routerLink]="['/card/', data.paymentDetailId]">edit</a> | <a (click)="deleteCard(data.paymentDetailId)">delete</a></th>
+            </tr>
+        </tbody>
+    </table>
+</div>

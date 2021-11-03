@@ -1,0 +1,50 @@
+
+<div class="container">
+    <h1 class="text-center">Edit Card</h1>
+    
+    <form [formGroup]="editCardForm" (ngSubmit)="updateCard(card.paymentDetailId)">
+
+        <div class="form-group mt-3">
+            <label for="cardOwnerName">Card Owner Name</label>
+            <input 
+            class="form-control" type="text" 
+            formControlName="cardOwnerName"
+            placeholder="Enter your name"
+            required
+            >
+            <span style="color: red;"
+                *ngIf="cardOwnerName && cardOwnerName.touched && cardOwnerName.invalid"
+            >First Name is required</span>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="cardNumber">Card Number</label>
+            <input class="form-control" type="text" formControlName="cardNumber"
+            placeholder="16 digit card number"
+            required>
+            <span style="color: red;"
+                *ngIf="cardNumber && cardNumber.touched && cardNumber.invalid"
+            >First Name is required</span>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="securityCode">Security Code</label>
+            <input class="form-control" type="password" formControlName="securityCode"
+            placeholder="security code" [readOnly]="securityCode">
+            <span style="color: red;"
+                *ngIf="securityCode && securityCode.touched && securityCode.invalid"
+            >First Name is required</span>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="expirationDate">Valid through</label>
+            <input class="form-control" type="date" formControlName="expirationDate"
+            placeholder="mm/yy" required>
+            <span style="color: red;"
+                *ngIf="expirationDate && expirationDate.touched && expirationDate.invalid"
+            >First Name is required</span>
+        </div>
+
+        <button type="submit" class="btn btn-block btn-primary mt-3">Edit</button>
+    </form>
+</div>
