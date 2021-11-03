@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { CardService } from '../services/card.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class AddCardFormComponent implements OnInit {
   newCardForm = new FormGroup({
     cardOwnerName: new FormControl('', [
       Validators.required,
-      Validators.pattern('[a-zA-Z ]*')
+      Validators.pattern('[a-zA-Z ]*'),
+      Validators.minLength(5)
     ]),
     cardNumber: new FormControl('', [
       Validators.minLength(16),
@@ -59,6 +61,10 @@ export class AddCardFormComponent implements OnInit {
         this.newCardForm.reset()
         this.router.navigate(['/home'])
       }
-    })
+    },
+    err => {
+      Swal.fire(err, 'invalid input')
+    }
+    )
   }
 }

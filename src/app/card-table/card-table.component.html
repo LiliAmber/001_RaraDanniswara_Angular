@@ -1,30 +1,59 @@
-<!-- <p>card-table works!</p> -->
+<div class="min-w-screen min-h-screen items-center justify-center px-5 py-5 bg-gray-200">
+    <h1 class="text-center mt-5 text-blue-700">Payment Detail Register</h1>
 
-<div class="container">
+    <div class="flex mb-5">
 
-    <h1 class="text-center mt-5">Cards Table</h1>
+        <button class="hover:bg-blue-200 hover:text-blue-800 group flex items-center rounded-md bg-blue-100 text-blue-600 text-sm font-medium px-4 py-2 mx-2" [routerLink]="'/addCard'">
+            <svg
+            class="group-hover:text-blue-600 text-blue-500 mr-2"
+            width="12"
+            height="20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M6 5a1 1 0 011 1v3h3a1 1 0 110 2H7v3a1 1 0 11-2 0v-3H2a1 1 0 110-2h3V6a1 1 0 011-1z"
+            />
+          </svg>
+        </button>
 
-    <a [routerLink]="'/addCard'"><button class="mb-5 btn btn-md btn-primary">Add Staff</button></a>
+        <button class="btn btn-outline btn-accent mx-2" (click)="logOut()">Sign Out</button>
+    </div>
 
-    <table class="table table-striped mt-3">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Card Owner</th>
-                <th>Card Number</th>
-                <th>Exp Date</th>
-                <th>Action</th>
-            </tr>
-        </thead>
 
-        <tbody>
-            <tr *ngFor="let data of cards let i = index">
-                <th>{{i + 1}}</th>
-                <th>{{data.cardOwnerName}}</th>
-                <th>{{data.cardNumber}}</th>
-                <th>{{data.expirationDate}}</th>
-                <th><a [routerLink]="['/card/', data.paymentDetailId]">edit</a> | <a (click)="deleteCard(data.paymentDetailId)">delete</a></th>
-            </tr>
-        </tbody>
-    </table>
+    <div class="w-full overflow-hidden rounded-lg shadow-xs">
+        <div class="w-full overflow-x-auto">
+            <table class="table w-full">
+                <thead class="text-blue-500">
+                    <tr
+                      className="
+                        text-xs
+                        font-semibold
+                        tracking-wide
+                        text-left
+                        uppercase
+                        border-b
+                      "
+                    >
+                      <th className="px-4 py-3">No</th>
+                      <th className="px-4 py-3">Card Owner</th>
+                      <th className="px-4 py-3">Card Number</th>
+                      <th className="px-4 py-3">Exp Date</th>
+                      <th className="px-4 py-3">Action</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr *ngFor="let data of cards let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{data.cardOwnerName}}</td>
+                        <td>{{data.cardNumber}}</td>
+                        <td>{{data.expirationDate}}</td>
+                        <td><a [routerLink]="['/card/', data.paymentDetailId]">edit</a> | <a (click)="deleteCard(data.paymentDetailId)" class="text-red-500">delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class SignupComponent implements OnInit {
     ]),
     password: new FormControl('', [
       Validators.required,
-      Validators.minLength(5)
+      Validators.minLength(6)
     ]),
     email: new FormControl('', [
       Validators.email,
@@ -53,8 +54,27 @@ export class SignupComponent implements OnInit {
 
         this.signupForm.reset()
         this.router.navigate(['/signin'])
+
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: toast => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          }
+        });
+        Toast.fire({
+          icon: "success",
+          title: "you can sign in now"
+        });
       }
-      
-    })
+    },
+    err => {
+      Swal.fire(err, 'invalid input')
+    }
+    )
   }
 }

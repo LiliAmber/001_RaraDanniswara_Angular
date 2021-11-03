@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class AuthGuard implements CanActivate {
       
     if(this.auth.isAuthenticated) return true
 
-      window.alert("You are not authenticated. Please sign in first.")
+      // window.alert("You are not authenticated. Please sign in first.")
+      Swal.fire("You are not authenticated. Please sign in first.")
       this.router.navigate(['/signin'])
 
       return false

@@ -1,40 +1,83 @@
-<!-- <p>signup works!</p> -->
-<div class="container">
-    <h1 class="text-center">signup form</h1>
+<div class="min-w-screen min-h-screen flex items-center justify-center px-5 py-5 bg-gray-200">
 
-    <form [formGroup]="signupForm" (ngSubmit)="signup()">
+    <div class="container mx-auto flex flex-col items-center">
 
-        <div class="form-group mt-3">
-            <label for="username">Username</label>
-            <input class="form-control" type="text" 
-            formControlName="username"
-            placeholder="Enter your name"
-            required>
-            <span style="color: red;"
-            *ngIf="username && username.touched && username.invalid"
-        >First Name is required</span>
-        </div>
-        <div class="form-group mt-3">
-            <label for="email">Email</label>
-            <input class="form-control" type="email" 
-            formControlName="email"
-            placeholder="Enter your email"
-            required>
-            <span style="color: red;"
-            *ngIf="email && email.touched && email.invalid"
-        >First Name is required</span>
-        </div>
-        <div class="form-group mt-3">
-            <label for="password">Password</label>
-            <label for="email">Email</label>
-            <input class="form-control" type="password" 
-            formControlName="password"
-            placeholder="Enter your password"
-            required>
-            <span style="color: red;"
-            *ngIf="password && password.touched && password.invalid"
-        >First Name is required</span>
-        </div>
-        <button type="submit" class="btn btn-block btn-primary mt-3">signup</button>
+        <div>
+			<h1 class="text-3xl font-bold text-center mb-4 cursor-pointer">Create An Account</h1>
+			<p class="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Create an
+				account to enjoy all the services without any ads for free!</p>
+		</div>
+
+      <form 
+      class="shadow-lg w-80 p-4 flex flex-col bg-white rounded-lg" 
+      [formGroup]="signupForm" (ngSubmit)="signup()"
+      >
+
+      <label for="username" class="label-text mb-3">Username</label>
+        <input 
+        type="text" 
+        placeholder="Type your username" 
+        class="mb-1 py-3 px-4 input input-info input-bordered" 
+        formControlName="username"
+        />
+
+        <label class="label" *ngIf="username?.invalid">
+            <span class="label-text-alt" style="color: red;"
+            *ngIf="username && username.touched"
+        >username is required</span>
+
+            <span *ngIf="username?.errors?.minlength" style="color: red;" class="label-text-alt">
+                minimal char {{username?.errors?.minlength?.requiredLength}}
+            </span>
+        </label>
+
+      <label for="email" class="label-text mb-3">Email</label>
+        <input 
+        type="email" 
+        placeholder="Email" 
+        class="mb-3 py-3 px-4 input input-info input-bordered" 
+        formControlName="email"
+        />
+
+        <label class="label" *ngIf="email?.invalid">
+            <span class="label-text-alt" style="color: red;"
+                *ngIf="email?.errors?.email"
+            >please enter a valid email</span>
+            <span class="label-text-alt" style="color: red;"
+            *ngIf="email && email.touched"
+        >email can't be empty</span>
+        </label>
+        
+        <label for="password" class="label-text mb-3">Password</label>
+        <input 
+        type="password" 
+        placeholder="Pasword" 
+        class="mb-3 py-3 px-4 input input-info input-bordered" 
+        formControlName="password"
+        />
+        <label class="label" *ngIf="password?.invalid">
+            <span class="label-text-alt" style="color: red;"
+            *ngIf="password && password.touched"
+        >password is required</span>
+
+            <span *ngIf="password?.errors?.minlength" style="color: red;" class="label-text-alt">
+                minimal char {{password?.errors?.minlength?.requiredLength}}
+            </span>
+        </label>
+
+        <button class="w-full bg-blue-500 text-white p-3 rounded-lg font-semibold text-lg">Create Account</button>
+        
+        <hr />
+
+        <p class="mt-4 text-sm">Already Have An Account? <a [routerLink]="['/signin']"><span class="underline cursor-pointer"> Sign In</span></a>
+        
+        <ol class="mt-4 text-sm text-red-500">
+            <li>* Passwords must be at least 6 characters</li>
+            <li>* Passwords must have at least one non alphanumeric character</li>
+            <li>* Passwords must have at least one digit ('0'-'9')</li>
+            <li>* Passwords must have at least one uppercase ('A'-'Z')</li>
+        </ol>
+        
     </form>
-</div>
+    </div>
+  </div>

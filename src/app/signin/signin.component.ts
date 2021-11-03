@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signin',
@@ -35,7 +36,7 @@ export class SigninComponent implements OnInit {
   }
 
   signin() {
-    console.log(this.signinForm.value)
+    console.log(this.signinForm, '<<< signin form')
 
     this.authService.signIn(this.signinForm.value)
     .subscribe((res: any) => {
@@ -45,7 +46,30 @@ export class SigninComponent implements OnInit {
         this.authService.setAuthorizationToken(res.token)
         this.signinForm.reset()
         this.router.navigate(['/home'])
-      }
-    })
+
+        //==alert==
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: toast => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          }
+        });
+        Toast.fire({
+          icon: "success",
+          title: "Signed in successfully"
+        });
+      } 
+    },
+    err => {
+      // console.log("ke trigger")
+      // alert(err)
+      Swal.fire(err, 'invalid input')
+    }
+    )
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 import { User } from '../Models/User';
 
@@ -22,8 +22,6 @@ export class AuthService {
     return !!this.getAuthorizationToken()
   }
 
-  // ambil pseudo-setter dan pseudo-getter untuk app_token
-
   getAuthorizationToken () {
     return localStorage.getItem('token')
   }
@@ -41,7 +39,10 @@ export class AuthService {
 
     return this.http
     .post(api, user)
-    .pipe( catchError(this.handleError) )
+    // .pipe( catchError(this.handleError) )
+    .pipe(map((res: any) => {
+      return res
+    }))
   }
 
   signIn(user: User) {
@@ -49,7 +50,10 @@ export class AuthService {
 
     return this.http
     .post(api, user)
-    .pipe( catchError(this.handleError) )
+    // .pipe( catchError(this.handleError) )
+    .pipe(map((res: any) => {
+      return res
+    }))
   }
 
   handleError(err: HttpErrorResponse): Observable<any>{
