@@ -1,10 +1,10 @@
 {
-  "name": "payment-dashboard",
+  "name": "paymentDashboard",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node server.js",
+    "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -21,6 +21,7 @@
     "@tailwindcss/forms": "^0.3.4",
     "@tailwindcss/typography": "^0.4.1",
     "daisyui": "^1.16.1",
+    "express": "^4.17.1",
     "rxjs": "~6.6.0",
     "sweetalert2": "^11.1.9",
     "tslib": "^2.3.0",
