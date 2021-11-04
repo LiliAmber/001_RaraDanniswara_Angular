@@ -10,7 +10,8 @@ import { Card } from '../Models/Card';
   providedIn: 'root'
 })
 export class CardService {
-  endpoint: string = 'http://localhost:5000/api/Payment'
+  // endpoint: string = 'http://localhost:5000/api/Payment'
+  endpoint: string = 'https://payment-rara.herokuapp.com/api/Payment'
 
   constructor(private http: HttpClient, private router: Router) { }
 

@@ -10,7 +10,8 @@ import { User } from '../Models/User';
 })
 export class AuthService {
 
-  endpoint: string = 'http://localhost:5000/api/AuthManagement'
+  // endpoint: string = 'http://localhost:5000/api/AuthManagement'
+  endpoint: string = 'https://payment-rara.herokuapp.com/api/AuthManagement'
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
