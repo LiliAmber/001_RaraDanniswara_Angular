@@ -23,7 +23,7 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(catchError(err => {
       if (err.status==401||err.status==403) {
           this.auth.clearToken();
-        //   window.alert("You are not authenticated. Please log in.");
+          // window.alert("You are not authenticated. Please log in.");
           Swal.fire("You are not authenticated. Please log in.")
           this.router.navigate(['/signin']);
       }

@@ -20,12 +20,14 @@ export class AddCardFormComponent implements OnInit {
       Validators.minLength(5)
     ]),
     cardNumber: new FormControl('', [
+      Validators.required,
       Validators.minLength(16),
-      Validators.required
+      Validators.maxLength(16)
     ]),
     securityCode: new FormControl('', [
       Validators.required,
-      Validators.minLength(3)
+      Validators.minLength(3),
+      Validators.maxLength(3)
     ]),
     expirationDate: new FormControl('', [
       Validators.required
@@ -52,14 +54,30 @@ export class AddCardFormComponent implements OnInit {
   }
 
   createCard() {
-    console.log(this.newCardForm.value, '<<<<form add')
+    // console.log(this.newCardForm.value, '<<<<form add')
     this.cardService.createCard(this.newCardForm.value)
     .subscribe((res: any) => {
       if(res) {
-        console.log(res, '<<<res')
+        // console.log(res, '<<<res')
 
         this.newCardForm.reset()
         this.router.navigate(['/home'])
+
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: toast => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          }
+        });
+        Toast.fire({
+          icon: "success",
+          title: res.message
+        });
       }
     },
     err => {

@@ -36,12 +36,12 @@ export class SigninComponent implements OnInit {
   }
 
   signin() {
-    console.log(this.signinForm, '<<< signin form')
+    // console.log(this.signinForm, '<<< signin form')
 
     this.authService.signIn(this.signinForm.value)
     .subscribe((res: any) => {
       if(res) {
-        console.log(res, '<<res login')
+        // console.log(res, '<<res login')
 
         this.authService.setAuthorizationToken(res.token)
         this.signinForm.reset()
@@ -61,7 +61,7 @@ export class SigninComponent implements OnInit {
         });
         Toast.fire({
           icon: "success",
-          title: "Signed in successfully"
+          title: "Signed in successful"
         });
       } 
     },

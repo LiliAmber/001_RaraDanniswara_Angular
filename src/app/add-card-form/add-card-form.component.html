@@ -25,9 +25,9 @@
                     minimal char {{cardOwnerName?.errors?.minlength?.requiredLength}}
                 </span>
 
-                <span *ngIf="cardOwnerName?.errors?.patter" style="color: red;" class="label-text-alt">
-                    minimal char {{cardOwnerName?.errors?.minlength?.requiredPattern}}
-                </span>
+                <span *ngIf="cardOwnerName?.errors?.requiredPattern" style="color: red;" class="label-text-alt">
+                  pattern msg {{cardOwnerName?.errors?.requiredPattern}}
+              </span>
             </label>
 
             <label for="cardNumber" class="label-text mb-3">Card Number</label>
@@ -47,6 +47,10 @@
                     minimal char {{cardNumber?.errors?.minlength?.requiredLength}}
                 </span>
 
+                <span *ngIf="cardNumber?.errors?.maxlength" style="color: red;" class="label-text-alt">
+                  maximal char {{cardNumber?.errors?.maxlength?.requiredLength}}
+              </span>
+
             </label>
 
             <label for="securityCode" class="label-text mb-3">Security Code</label>
@@ -65,6 +69,10 @@
                 <span *ngIf="securityCode?.errors?.minlength" style="color: red;" class="label-text-alt">
                     minimal char {{securityCode?.errors?.minlength?.requiredLength}}
                 </span>
+
+                <span *ngIf="securityCode?.errors?.maxlength" style="color: red;" class="label-text-alt">
+                  maximal char {{securityCode?.errors?.maxlength?.requiredLength}}
+              </span>
 
             </label>
 

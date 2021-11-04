@@ -40,12 +40,12 @@ export class CardTableComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         
-        console.log(id, '<<<id del')
+        // console.log(id, '<<<id del')
         this.cardService
         .deleteCard(id)
         .subscribe((res: any) => {
           if(res) {
-            console.log(res, '<<<res delete')
+            // console.log(res, '<<<res delete')
     
             this.getCards()
           }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 import { Card } from '../Models/Card';
 import { CardService } from '../services/card.service';
@@ -26,12 +27,14 @@ export class EditCardFormComponent implements OnInit {
       Validators.pattern('[a-zA-Z ]*')
     ]),
     cardNumber: new FormControl('', [
+      Validators.required,
       Validators.minLength(16),
-      Validators.required
+      Validators.maxLength(16)
     ]),
     securityCode: new FormControl('', [
       Validators.required,
-      Validators.minLength(3)
+      Validators.minLength(3),
+      Validators.maxLength(3)
     ]),
     expirationDate: new FormControl('', [
       Validators.required
@@ -73,15 +76,31 @@ export class EditCardFormComponent implements OnInit {
   }
 
   updateCard(id: number) {
-    console.log(this.editCardForm.value, '<<<form edit')
+    // console.log(this.editCardForm.value, '<<<form edit')
 
     this.cardService
     .updateCard(id, this.editCardForm.value)
     .subscribe((res: any) => {
-      console.log(res, '<<<res')
+      // console.log(res, '<<<res')
       if(res) {
         this.editCardForm.reset()
         this.router.navigate(['/home'])
+
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: toast => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          }
+        });
+        Toast.fire({
+          icon: "success",
+          title: res.message
+        });
       }
     })
   }

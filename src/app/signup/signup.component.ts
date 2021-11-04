@@ -44,13 +44,13 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
-    console.log(this.signupForm.value)
+    // console.log(this.signupForm.value)
 
     this.authService.signUp(this.signupForm.value)
     .subscribe((res: any) => {
       
       if(res) {
-        console.log(res)
+        // console.log(res)
 
         this.signupForm.reset()
         this.router.navigate(['/signin'])

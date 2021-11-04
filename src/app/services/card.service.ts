@@ -45,7 +45,7 @@ export class CardService {
   }
 
   deleteCard(id: number) {
-    console.log(id, '<<<di service del')
+    // console.log(id, '<<<di service del')
     let api = `${this.endpoint}/${id}`
     return this.http
       .delete(api)

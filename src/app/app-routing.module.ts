@@ -11,7 +11,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/signin', pathMatch: 'full'}, 
   {path: 'signup', component: SignupComponent},
   {path: 'signin', component: SigninComponent},
-  {path: 'home', component: CardTableComponent},
+  {path: 'home', component: CardTableComponent, canActivate: [AuthGuard]},
   {path: 'addCard', component: AddCardFormComponent},
   {path: 'card/:id', component: EditCardFormComponent}
 ];

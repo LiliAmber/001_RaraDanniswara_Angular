@@ -50,7 +50,23 @@
                         <td>{{data.cardOwnerName}}</td>
                         <td>{{data.cardNumber}}</td>
                         <td>{{data.expirationDate}}</td>
-                        <td><a [routerLink]="['/card/', data.paymentDetailId]">edit</a> | <a (click)="deleteCard(data.paymentDetailId)" class="text-red-500">delete</a></td>
+                        <!-- <td><a [routerLink]="['/card/', data.paymentDetailId]">edit</a> | <a (click)="deleteCard(data.paymentDetailId)" class="text-red-500">delete</a></td> -->
+                        <td class="flex">
+
+                          <button
+                            class=" bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-1 px-2 mt-4 mx-2 mb-2 rounded focus:outline-none focus:shadow-outline"
+                            [routerLink]="['/card/', data.paymentDetailId]"
+                          >
+                            Edit
+                          </button>
+  
+                          <button
+                            class=" bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-2 mt-4 mx-2 mb-2 rounded focus:outline-none focus:shadow-outline"
+                            (click)="deleteCard(data.paymentDetailId)"
+                          >
+                            Delete
+                          </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
