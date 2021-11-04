@@ -13,10 +13,10 @@ const app = express()
 const port = process.env.PORT || 8080
 
 app.use(requireHTTPS) //komen line ini kalo run di local
-app.use(express.static('./dist/todo'))
+app.use(express.static('./dist/paymentDashboard'))
 
 app.get('/*', (req, res) => 
-    res.sendFile('index.html', {root: './dist/todo'})
+    res.sendFile('index.html', {root: './dist/paymentDashboard'})
 )
 
 app.listen(port, () => {
